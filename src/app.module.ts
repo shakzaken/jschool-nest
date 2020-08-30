@@ -1,13 +1,13 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { CourseModule } from './course/course.module';
+import { CoursesModule } from './course/courses.module';
 import {TypeOrmModule} from "@nestjs/typeorm";
-import {Course} from "./course/course.entity";
+import {Course} from "./course/courses.entity";
 
 @Module({
   imports: [
-    CourseModule,
+    CoursesModule,
     TypeOrmModule.forRoot({
       type: "mysql",
       host: "localhost",
