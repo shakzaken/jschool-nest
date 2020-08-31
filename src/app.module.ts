@@ -1,13 +1,16 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { CoursesModule } from './course/courses.module';
+import { CoursesModule } from './courses/courses.module';
 import {TypeOrmModule} from "@nestjs/typeorm";
-import {Course} from "./course/courses.entity";
+import {Course} from "./courses/courses.entity";
+import { UsersModule } from './users/users.module';
+import { DegreesModule } from './degrees/degrees.module';
+import {User} from "./users/user.entity";
+import {Degree} from "./degrees/degree.entity";
 
 @Module({
   imports: [
-    CoursesModule,
     TypeOrmModule.forRoot({
       type: "mysql",
       host: "localhost",
@@ -15,9 +18,12 @@ import {Course} from "./course/courses.entity";
       username: "root",
       password:"1234",
       database: "jschool",
-      entities: [Course],
+      entities: [Course,User,Degree],
       synchronize: true
-    })
+    }),
+    UsersModule,
+    DegreesModule,
+    CoursesModule
   ],
   controllers: [AppController],
   providers: [AppService],
