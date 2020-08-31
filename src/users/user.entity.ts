@@ -1,4 +1,5 @@
-import {Entity,Column,PrimaryGeneratedColumn} from "typeorm";
+import {Entity, Column, PrimaryGeneratedColumn, ManyToOne, OneToMany} from "typeorm";
+import {CourseComment} from "../courses/course_comment.entity";
 
 
 
@@ -16,5 +17,7 @@ export class User {
   email: string;
 
 
+  @OneToMany(type => CourseComment, courseComment => courseComment.user)
+  courseComments: CourseComment[];
 
 }
