@@ -1,7 +1,11 @@
 import {EntityRepository,Repository} from "typeorm";
 import {Course} from "./courses.entity";
 import {CreateCourseDto} from "./dto/create-course.dto";
+import {} from "@nestjs/typeorm";
 
+
+
+@EntityRepository(Course)
 export class CourseRepository extends Repository<Course> {
 
   async createCourse(createCourseDto : CreateCourseDto) : Promise<Course> {
