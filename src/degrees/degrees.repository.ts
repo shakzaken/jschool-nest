@@ -20,4 +20,8 @@ export class DegreesRepository extends Repository<Degree> {
     return degree;
   }
 
+  getDegreeById(id:number) : Promise<Degree>{
+    return this.findOne({id:id});
+  }
+
 }

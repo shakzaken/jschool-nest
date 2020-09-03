@@ -5,9 +5,16 @@ import {TypeOrmModule} from "@nestjs/typeorm";
 import {DegreesRepository} from "./degrees.repository";
 import {Degree} from "./degree.entity";
 import {Course} from "../courses/courses.entity";
+import {DegreeCommentsRepository} from "./degree-comments.repository";
+import {DegreeComment} from "./degree-comment.entity";
+import {UsersRepository} from "../users/users.repository";
+import {User} from "../users/user.entity";
+
 
 @Module({
-  imports:[TypeOrmModule.forFeature([DegreesRepository,Degree,Course])],
+  imports:[TypeOrmModule.forFeature([
+    DegreesRepository,Degree,Course,UsersRepository,User,
+    DegreeCommentsRepository,DegreeComment])],
   controllers: [DegreesController],
   providers: [DegreesService]
 })

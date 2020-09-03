@@ -1,5 +1,6 @@
 import {Entity, Column, PrimaryGeneratedColumn, ManyToOne, OneToMany} from "typeorm";
-import {CourseComment} from "../courses/course_comment.entity";
+import {CourseComment} from "../courses/comment/course_comment.entity";
+import {DegreeComment} from "../degrees/degree-comment.entity";
 
 
 
@@ -20,4 +21,6 @@ export class User {
   @OneToMany(type => CourseComment, courseComment => courseComment.user)
   courseComments: CourseComment[];
 
+  @OneToMany(type => DegreeComment, degreeComment => degreeComment.user)
+  degreeComments: DegreeComment[];
 }

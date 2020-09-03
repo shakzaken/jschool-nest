@@ -1,6 +1,7 @@
 
 import {Entity, Column, PrimaryGeneratedColumn, OneToMany} from "typeorm";
-import {CourseComment} from "./course_comment.entity";
+import {CourseComment} from "./comment/course_comment.entity";
+import {CourseImage} from "./image/course-image.entity";
 
 
 @Entity()
@@ -18,5 +19,8 @@ export class Course {
 
   @OneToMany(type => CourseComment, courseComment => courseComment.course)
   courseComments: CourseComment[];
+
+  @OneToMany(type => CourseImage, courseImage => courseImage.course)
+  courseImages: CourseImage[];
 
 }

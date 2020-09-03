@@ -8,8 +8,9 @@ import { UsersModule } from './users/users.module';
 import { DegreesModule } from './degrees/degrees.module';
 import {User} from "./users/user.entity";
 import {Degree} from "./degrees/degree.entity";
-import {CourseComment} from "./courses/course_comment.entity";
-
+import {CourseComment} from "./courses/comment/course_comment.entity";
+import {DegreeComment} from "./degrees/degree-comment.entity";
+import {CourseImage} from "./courses/image/course-image.entity";
 
 @Module({
   imports: [
@@ -20,7 +21,7 @@ import {CourseComment} from "./courses/course_comment.entity";
       username: "root",
       password:"1234",
       database: "jschool",
-      entities: [Course,User,Degree,CourseComment],
+      entities: [Course,User,Degree,CourseComment,DegreeComment,CourseImage],
       synchronize: true
     }),
     UsersModule,

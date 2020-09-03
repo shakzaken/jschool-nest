@@ -3,7 +3,7 @@ import { UsersController } from './users.controller';
 import { UsersService } from './users.service';
 import {UsersRepository} from "./users.repository";
 import {TypeOrmModule} from "@nestjs/typeorm";
-import {CourseComment} from "../courses/course_comment.entity";
+import {CourseComment} from "../courses/comment/course_comment.entity";
 
 
 @Module({
