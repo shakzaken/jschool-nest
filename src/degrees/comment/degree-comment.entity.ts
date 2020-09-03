@@ -1,6 +1,6 @@
 import {Column, Entity, ManyToOne, PrimaryGeneratedColumn} from "typeorm";
-import {User} from "../users/user.entity";
-import {Degree} from "./degree.entity";
+import {User} from "../../users/user.entity";
+import {Degree} from "../degree.entity";
 
 
 @Entity()

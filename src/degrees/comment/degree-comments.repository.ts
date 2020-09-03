@@ -1,7 +1,7 @@
 import {Repository,EntityRepository} from "typeorm";
 import {DegreeComment} from "./degree-comment.entity";
-import {User} from "../users/user.entity";
-import {Degree} from "./degree.entity";
+import {User} from "../../users/user.entity";
+import {Degree} from "../degree.entity";
 
 
 @EntityRepository(DegreeComment)

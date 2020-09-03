@@ -1,6 +1,6 @@
 import {Entity, Column, PrimaryGeneratedColumn, ManyToOne, OneToMany} from "typeorm";
 import {CourseComment} from "../courses/comment/course_comment.entity";
-import {DegreeComment} from "../degrees/degree-comment.entity";
+import {DegreeComment} from "../degrees/comment/degree-comment.entity";
 
 
 

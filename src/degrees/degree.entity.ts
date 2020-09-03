@@ -1,6 +1,7 @@
 import {Column, PrimaryGeneratedColumn, Entity, ManyToMany, JoinTable, OneToMany} from "typeorm";
 import {Course} from "../courses/courses.entity";
-import {DegreeComment} from "./degree-comment.entity";
+import {DegreeComment} from "./comment/degree-comment.entity";
+import {DegreeImage} from "./image/degree-image.entity";
 
 
 @Entity()
@@ -18,6 +19,9 @@ export class Degree {
 
   @OneToMany(type => DegreeComment, degreeComments => degreeComments.degree)
   degreeComments: DegreeComment[];
+
+  @OneToMany(type => DegreeImage,degreeImage => degreeImage.degree)
+  degreeImages: DegreeImage[];
 
   @ManyToMany(type => Course)
   @JoinTable({name:"degree_courses"})

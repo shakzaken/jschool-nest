@@ -4,8 +4,11 @@ import {DegreesRepository} from "./degrees.repository";
 import {Degree} from "./degree.entity";
 import {CreateDegreeCommentDto} from "./dto/create-degree-comment.dto";
 import {UsersRepository} from "../users/users.repository";
-import {DegreeCommentsRepository} from "./degree-comments.repository";
-import {DegreeComment} from "./degree-comment.entity";
+import {DegreeCommentsRepository} from "./comment/degree-comments.repository";
+import {DegreeComment} from "./comment/degree-comment.entity";
+import {DegreeImage} from "./image/degree-image.entity";
+import {DegreeImageRepository} from "./image/degree-image.repository";
+import {CreateDegreeImageDto} from "./dto/create-degree-image.dto";
 
 
 @Injectable()
@@ -17,7 +20,9 @@ export class DegreesService {
     @InjectRepository(UsersRepository)
     private usersRepository: UsersRepository,
     @InjectRepository(DegreeCommentsRepository)
-    private degreeCommentsRepository : DegreeCommentsRepository
+    private degreeCommentsRepository : DegreeCommentsRepository,
+    @InjectRepository(DegreeImageRepository)
+    private degreeImageRepository: DegreeImageRepository
   ){}
 
 
@@ -27,6 +32,10 @@ export class DegreesService {
 
   getDegreeCommentsById(degreeId:number) : Promise<DegreeComment[]>{
     return this.degreeCommentsRepository.getDegreeCommentsById(degreeId);
+  }
+
+  getDegreeImagesById(degreeId:number) : Promise<DegreeImage[]> {
+    return this.degreeImageRepository.getDegreeImagesById(degreeId);
   }
 
   createDegree(createDegreeDto) : Promise<Degree> {
@@ -41,6 +50,13 @@ export class DegreesService {
     const result = await this.degreeCommentsRepository.createDegreeComment(user,degree,comment);
     return result;
 
+  }
+
+  async createDegreeImage(createDegreeImageDto : CreateDegreeImageDto) : Promise<DegreeImage>{
+    const {degreeId,image} = createDegreeImageDto;
+    const degree = await this.degreesRepository.getDegreeById(degreeId);
+    const result = await this.degreeImageRepository.createDegreeImage(degree,image);
+    return result;
   }
 
 }
