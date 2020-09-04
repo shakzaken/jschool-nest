@@ -13,6 +13,7 @@ import {DegreeComment} from "./degrees/comment/degree-comment.entity";
 import {CourseImage} from "./courses/image/course-image.entity";
 import {DegreeImage} from "./degrees/image/degree-image.entity";
 import {UserImage} from "./users/images/user-image.entity";
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -29,7 +30,8 @@ import {UserImage} from "./users/images/user-image.entity";
     }),
     UsersModule,
     DegreesModule,
-    CoursesModule
+    CoursesModule,
+    AuthModule
   ],
   controllers: [AppController],
   providers: [AppService],

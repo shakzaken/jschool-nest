@@ -9,9 +9,9 @@ import {UserImageRepository} from "./images/user-image.repository";
 
 
 @Module({
-  imports:[TypeOrmModule.forFeature([UsersRepository,CourseComment,
-           UserImage,UserImageRepository])],
+  imports:[TypeOrmModule.forFeature([UsersRepository,CourseComment,UserImage,UserImageRepository])],
   controllers: [UsersController],
-  providers: [UsersService]
+  providers: [UsersService],
+  exports:[UsersService]
 })
 export class UsersModule {}

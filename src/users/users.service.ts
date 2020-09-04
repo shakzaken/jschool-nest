@@ -5,6 +5,7 @@ import {CreateUserDto} from "./dto/create-user-dto";
 import {UserImageRepository} from "./images/user-image.repository";
 import {CreateUserImageDto} from "./dto/createUserImage.dto";
 import {UserImage} from "./images/user-image.entity";
+import {User} from "./user.entity";
 
 @Injectable()
 export class UsersService {
@@ -35,6 +36,12 @@ export class UsersService {
     const result = await this.userImageRepository.createUserImage(user,image);
     return result;
   }
+
+
+  getUserByEmail(email:string) : Promise<User>{
+    return this.usersRepository.getUserByEmail(email);
+  }
+
 
 
 }

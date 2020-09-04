@@ -1,10 +1,11 @@
-import {Entity, Column, PrimaryGeneratedColumn, ManyToOne, OneToMany} from "typeorm";
+import {Entity, Column, PrimaryGeneratedColumn, ManyToOne, OneToMany , Unique} from "typeorm";
 import {CourseComment} from "../courses/comment/course_comment.entity";
 import {DegreeComment} from "../degrees/comment/degree-comment.entity";
-
+import {} from "class-validator";
 
 
 @Entity()
+@Unique(["email"])
 export class User {
 
 
@@ -16,6 +17,9 @@ export class User {
 
   @Column()
   email: string;
+
+  @Column()
+  password:string;
 
 
   @OneToMany(type => CourseComment, courseComment => courseComment.user)
