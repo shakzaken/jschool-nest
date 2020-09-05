@@ -1,0 +1,3 @@
+interface TokenDto {
+  token:string
+}

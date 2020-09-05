@@ -6,6 +6,9 @@ import {UserImageRepository} from "./images/user-image.repository";
 import {CreateUserImageDto} from "./dto/createUserImage.dto";
 import {UserImage} from "./images/user-image.entity";
 import {User} from "./user.entity";
+import * as bcrypt from "bcrypt";
+
+
 
 @Injectable()
 export class UsersService {
@@ -26,7 +29,8 @@ export class UsersService {
     return this.userImageRepository.getUserImagesById(userId);
   }
 
-  createUser(createUserDto : CreateUserDto){
+  async createUser(createUserDto : CreateUserDto){
+    createUserDto.password = await this.createHashedPassword(createUserDto.password);
     return this.usersRepository.createUser(createUserDto);
   }
 
@@ -40,6 +44,13 @@ export class UsersService {
 
   getUserByEmail(email:string) : Promise<User>{
     return this.usersRepository.getUserByEmail(email);
+  }
+
+  async createHashedPassword(password) : Promise<string>{
+    const rounds = 10;
+    const salt = await bcrypt.genSalt(rounds);
+    const hash = await bcrypt.hash(password,salt);
+    return hash;
   }
 
 

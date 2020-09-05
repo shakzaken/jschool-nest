@@ -2,7 +2,7 @@ import {Repository, EntityRepository} from "typeorm";
 import {} from "@nestjs/typeorm";
 import {User} from "./user.entity";
 import {CreateUserDto} from "./dto/create-user-dto";
-
+import bcrypt from "bcrypt";
 
 
 @EntityRepository(User)
@@ -20,7 +20,7 @@ export class UsersRepository extends Repository<User> {
 
     user.email = createUserDto.email;
     user.name = createUserDto.name;
-    user.password = password;
+    user.password = createUserDto.password;
     await this.save(user);
     return user;
   }
