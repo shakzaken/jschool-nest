@@ -10,7 +10,7 @@ export class AuthService {
 
 
   constructor(
-    private userService: UsersService,
+    private usersService: UsersService,
     private jwtService: JwtService){}
 
 
@@ -18,7 +18,7 @@ export class AuthService {
 
   async login(loginDto : LoginDto) {
     const {email} = loginDto;
-    const user = await this.userService.getUserByEmail(email);
+    const user = await this.usersService.getUserByEmail(email);
     const result = await this.validateUser(loginDto,user);
     if(!result){
       return new UnauthorizedException();
@@ -40,6 +40,9 @@ export class AuthService {
     }
     return false;
   }
+
+
+
 
 
 

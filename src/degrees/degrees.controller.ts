@@ -1,10 +1,13 @@
-import {Body, Controller, Get, Param, Post} from '@nestjs/common';
+import {Body, Controller, Get, Param, Post,UseGuards} from '@nestjs/common';
 import {DegreesService} from "./degrees.service";
 import {CreateDegreeDto} from "./dto/createDegreeDto";
 import {Degree} from "./degree.entity";
 import {CreateDegreeCommentDto} from "./dto/create-degree-comment.dto";
 import {CreateDegreeImageDto} from "./dto/create-degree-image.dto";
+import {AuthGuard} from "../auth/auth.guard";
 
+
+@UseGuards(AuthGuard)
 @Controller('degrees')
 export class DegreesController {
 

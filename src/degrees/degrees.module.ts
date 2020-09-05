@@ -10,10 +10,13 @@ import {DegreeComment} from "./comment/degree-comment.entity";
 import {UsersRepository} from "../users/users.repository";
 import {User} from "../users/user.entity";
 import {DegreeImageRepository} from "./image/degree-image.repository";
-
+import {AuthModule} from "../auth/auth.module";
+import {UsersModule} from "../users/users.module";
+import {jwtConstants} from "../config/auth";
+import {JwtModule} from "@nestjs/jwt";
 
 @Module({
-  imports:[TypeOrmModule.forFeature([
+  imports:[UsersModule,AuthModule,TypeOrmModule.forFeature([
     DegreesRepository,Degree,Course,UsersRepository,User,
     DegreeImageRepository,DegreesRepository,
     DegreeCommentsRepository,DegreeComment])],

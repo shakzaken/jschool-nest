@@ -31,7 +31,7 @@ import { AuthModule } from './auth/auth.module';
     UsersModule,
     DegreesModule,
     CoursesModule,
-    AuthModule
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],
