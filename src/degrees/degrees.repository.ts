@@ -1,7 +1,7 @@
 import {Repository, EntityRepository} from "typeorm";
 import {Degree} from "./degree.entity";
 import {CreateDegreeDto} from "./dto/createDegreeDto";
-
+import {BadRequestException} from "@nestjs/common";
 
 
 @EntityRepository(Degree)
@@ -20,8 +20,12 @@ export class DegreesRepository extends Repository<Degree> {
     return degree;
   }
 
-  getDegreeById(id:number) : Promise<Degree>{
-    return this.findOne({id:id});
+  async getDegreeById(id:number) : Promise<Degree>{
+      const degree = await this.findOne({id:id});
+      if(!degree){
+        throw new BadRequestException("degreeId is invalid");
+      }
+      return degree;
   }
 
 }

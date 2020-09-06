@@ -1,11 +1,14 @@
-import {Controller, Get, Post, Body, Param} from '@nestjs/common';
+import {Controller, Get, Post, Body, Param, UseGuards, Request} from '@nestjs/common';
 import {CoursesService} from "./courses.service";
 import {CreateCourseDto} from "./dto/create-course.dto";
 import {Course} from "./courses.entity";
 import {CreateCourseCommentDto} from "./dto/create-course-comment.dto";
 import {CourseComment} from "./comment/course_comment.entity";
 import {CreateCourseImageDto} from "./dto/create-course-image.dto";
+import {AuthGuard} from "../auth/auth.guard";
 
+
+@UseGuards(AuthGuard)
 @Controller('courses')
 export class CoursesController {
 
@@ -43,8 +46,11 @@ export class CoursesController {
 
 
   @Post("/comments")
-  async createCourseComment(@Body() createCourseCommentDto: CreateCourseCommentDto){
-    return this.coursesService.createCourseComment(createCourseCommentDto);
+  async createCourseComment(
+      @Body() createCourseCommentDto: CreateCourseCommentDto,
+      @Request() request){
+    const userId = request.user.id;
+    return this.coursesService.createCourseComment(createCourseCommentDto,userId);
 
   }
 

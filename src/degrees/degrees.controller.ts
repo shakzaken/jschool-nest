@@ -1,4 +1,4 @@
-import {Body, Controller, Get, Param, Post,UseGuards} from '@nestjs/common';
+import {Body, Controller, Get, Param, Post,UseGuards,Request} from '@nestjs/common';
 import {DegreesService} from "./degrees.service";
 import {CreateDegreeDto} from "./dto/createDegreeDto";
 import {Degree} from "./degree.entity";
@@ -32,14 +32,19 @@ export class DegreesController {
   }
 
 
+
   @Post()
-  createDegree(@Body() createDegreeDto : CreateDegreeDto ) : Promise<Degree>{
+  createDegree(
+    @Body() createDegreeDto : CreateDegreeDto) : Promise<Degree>{
     return this.degreesService.createDegree(createDegreeDto);
   }
 
   @Post("/comments")
-  createDegreeComment(@Body() createDegreeCommentsDto: CreateDegreeCommentDto){
-    return this.degreesService.createDegreeComment(createDegreeCommentsDto);
+  createDegreeComment(
+    @Body() createDegreeCommentsDto: CreateDegreeCommentDto,
+    @Request() req ){
+      const userId = req.user.id;
+      return this.degreesService.createDegreeComment(createDegreeCommentsDto,userId);
   }
 
   @Post("/images")

@@ -3,6 +3,7 @@ import {} from "@nestjs/typeorm";
 import {User} from "./user.entity";
 import {CreateUserDto} from "./dto/create-user-dto";
 import bcrypt from "bcrypt";
+import {BadRequestException} from "@nestjs/common";
 
 
 @EntityRepository(User)
@@ -26,11 +27,19 @@ export class UsersRepository extends Repository<User> {
   }
 
   async getUserById(id:number) : Promise<User>{
-    return this.findOne({id:id});
+    const user = await this.findOne({id:id});
+    if(!user){
+      throw new BadRequestException("userId is Invalid");
+    }
+    return user;
   }
 
   async getUserByEmail(email:string) : Promise<User>{
-    return this.findOne({where:{email:email}});
+    const user = await this.findOne({where:{email:email}});
+    if(!user){
+      throw new BadRequestException("email is Invalid");
+    }
+    return user;
   }
 
 }

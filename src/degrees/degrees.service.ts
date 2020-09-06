@@ -42,8 +42,8 @@ export class DegreesService {
     return this.degreesRepository.createDegree(createDegreeDto);
   }
 
-  async createDegreeComment(createDegreeCommentDto :CreateDegreeCommentDto) : Promise<DegreeComment> {
-    const {degreeId, userId, comment} = createDegreeCommentDto;
+  async createDegreeComment(createDegreeCommentDto :CreateDegreeCommentDto,userId:number) : Promise<DegreeComment> {
+    const {degreeId,comment} = createDegreeCommentDto;
 
     const user = await this.usersRepository.getUserById(userId);
     const degree = await this.degreesRepository.getDegreeById(degreeId);

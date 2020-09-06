@@ -40,8 +40,8 @@ export class CoursesService {
     return this.courseRepository.createCourse(createCourseDto);
   }
 
-  async createCourseComment(createCourseCommentDto) : Promise<CourseComment> {
-    const {courseId,userId,comment} = createCourseCommentDto;
+  async createCourseComment(createCourseCommentDto,userId:number) : Promise<CourseComment> {
+    const {courseId,comment} = createCourseCommentDto;
     const course: Course = await this.courseRepository.getCourseById(courseId);
     const user : User = await this.userRepository.getUserById(userId);
     const courseComment: CourseComment = await this.courseCommentRepository.createCourseComment(comment,course,user);
