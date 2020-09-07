@@ -1,10 +1,11 @@
 
-import {Entity, Column, PrimaryGeneratedColumn, OneToMany} from "typeorm";
+import {Entity, Column, PrimaryGeneratedColumn, OneToMany, Unique} from "typeorm";
 import {CourseComment} from "./comment/course_comment.entity";
 import {CourseImage} from "./image/course-image.entity";
 
 
 @Entity()
+@Unique(["name"])
 export class Course {
 
 
